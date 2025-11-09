@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odeio Dragões!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #000; /* Fundo escuro para destacar o brilho */
+            overflow: hidden;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+
+        .dragon-hater {
+            font-size: 5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation:
+                rotate 8s infinite linear,
+                rainbow-text 2s infinite linear alternate,
+                glow 1.5s infinite alternate;
+            perspective: 1000px;
+            text-shadow:
+                0 0 5px rgba(255, 255, 255, 0.7),
+                0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        @keyframes rainbow-text {
+            0% { color: #ff0000; } /* Vermelho */
+            14% { color: #ff7f00; } /* Laranja */
+            28% { color: #ffff00; } /* Amarelo */
+            42% { color: #00ff00; } /* Verde */
+            57% { color: #0000ff; } /* Azul */
+            71% { color: #4b0082; } /* Índigo */
+            85% { color: #9400d3; } /* Violeta */
+            100% { color: #ff0000; } /* Volta ao Vermelho */
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow:
+                    0 0 5px rgba(255, 255, 255, 0.7),
+                    0 0 10px rgba(255, 255, 255, 0.7),
+                    0 0 20px rgba(255, 255, 255, 0.7);
+            }
+            to {
+                text-shadow:
+                    0 0 10px rgba(255, 255, 255, 1),
+                    0 0 20px rgba(255, 255, 255, 1),
+                    0 0 40px rgba(255, 255, 150, 1),
+                    0 0 80px rgba(255, 255, 100, 1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dragon-hater">
+        Odeio Dragões
+    </div>
+</body>
+</html>
