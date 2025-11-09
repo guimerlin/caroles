@@ -1,76 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odeio Dragões!</title>
+    <title>EU ODEIO DRAGÕES</title>
+    <!-- Carrega o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importa uma fonte estilo "máquina de escrever / gasta", central para a estética -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
     <style>
+        /* Define a fonte base e um fundo escuro */
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #000; /* Fundo escuro para destacar o brilho */
+            font-family: 'Special Elite', 'Courier New', monospace;
+            background-color: #0a0a0a; /* Quase preto */
+            color: #d4d4d4;
+            /* Adiciona um "grão" sutil à tela inteira */
+            background-image: linear-gradient(rgba(0,0,0,0.04), rgba(0,0,0,0.04));
+        }
+
+        /* Efeito de "fita adesiva" vermelha (estilo Clancy) */
+        .tape {
+            background-color: rgba(220, 38, 38, 0.7); /* Vermelho translúcido */
+            color: #fff;
+            padding: 2px 12px;
+            transform: rotate(-2.5deg); /* Levemente torto */
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 1px #000;
+        }
+
+        /* Efeito de "glitch" no texto principal (estilo Grunge/Clancy) */
+        .glitch-text {
+            position: relative;
+            color: #f3f3f3;
+            text-shadow: 
+                0 0 2px rgba(220, 38, 38, 0.5), 
+                0 0 5px rgba(220, 38, 38, 0.5);
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text); /* Pega o texto do atributo data-text */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a0a; /* Mesmo fundo do body */
             overflow: hidden;
-            font-family: 'Arial Black', Gadget, sans-serif;
+            clip: rect(0, 0, 0, 0);
         }
 
-        .dragon-hater {
-            font-size: 5em;
-            font-weight: bold;
-            text-transform: uppercase;
-            animation:
-                rotate 8s infinite linear,
-                rainbow-text 2s infinite linear alternate,
-                glow 1.5s infinite alternate;
-            perspective: 1000px;
-            text-shadow:
-                0 0 5px rgba(255, 255, 255, 0.7),
-                0 0 10px rgba(255, 255, 255, 0.7),
-                0 0 20px rgba(255, 255, 255, 0.7);
+        /* Animação da primeira camada do glitch (vermelho) */
+        .glitch-text::before {
+            left: -2px;
+            text-shadow: -2px 0 #dc2626;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotateY(0deg);
-            }
-            to {
-                transform: rotateY(360deg);
-            }
+        /* Animação da segunda camada do glitch (ciano/distorção) */
+        .glitch-text::after {
+            left: 2px;
+            text-shadow: -2px 0 #34d399; /* Um ciano/verde para distorção */
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
 
-        @keyframes rainbow-text {
-            0% { color: #ff0000; } /* Vermelho */
-            14% { color: #ff7f00; } /* Laranja */
-            28% { color: #ffff00; } /* Amarelo */
-            42% { color: #00ff00; } /* Verde */
-            57% { color: #0000ff; } /* Azul */
-            71% { color: #4b0082; } /* Índigo */
-            85% { color: #9400d3; } /* Violeta */
-            100% { color: #ff0000; } /* Volta ao Vermelho */
+        /* Keyframes para as animações de glitch */
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(38px, 9999px, 7px, 0); }
+            /* ... (mais passos) ... */
+            100% { clip: rect(91px, 9999px, 98px, 0); }
         }
 
-        @keyframes glow {
-            from {
-                text-shadow:
-                    0 0 5px rgba(255, 255, 255, 0.7),
-                    0 0 10px rgba(255, 255, 255, 0.7),
-                    0 0 20px rgba(255, 255, 255, 0.7);
-            }
-            to {
-                text-shadow:
-                    0 0 10px rgba(255, 255, 255, 1),
-                    0 0 20px rgba(255, 255, 255, 1),
-                    0 0 40px rgba(255, 255, 150, 1),
-                    0 0 80px rgba(255, 255, 100, 1);
-            }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            3% { clip: rect(41px, 9999px, 5px, 0); }
+            /* ... (mais passos) ... */
+            100% { clip: rect(4px, 9999px, 90px, 0); }
+        }
+
+        /* Estilo dos cards de "notícias", P&B (estilo Breach) */
+        .news-card {
+            filter: grayscale(100%) brightness(0.9);
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
         }
     </style>
 </head>
-<body>
-    <div class="dragon-hater">
-        Odeio Dragões
-    </div>
+<body class="min-h-screen flex flex-col">
+
+    <!-- 1. Header (Navbar do "Jogo") -->
+    <header class="p-4 border-b border-gray-800 flex justify-between items-center w-full sticky top-0 bg-[#0a0a0a] z-50">
+        <!-- Logo com efeito de fita -->
+        <h1 class="text-xl md:text-2xl font-bold uppercase tape">
+            EU ODEIO DRAGÕES
+        </h1>
+        
+        <!-- Links de Navegação -->
+        <nav class="hidden md:block">
+            <ul class="flex space-x-6 text-sm uppercase">
+                <li><a href="#" class="hover:text-red-600 transition-colors">EU ODEIO DRAGÕES</a></li>
+                <li><a href="#" class="hover:text-red-600 transition-colors">EU ODEIO DRAGÕES</a></li>
+                <li><a href="#" class="hover:text-red-600 transition-colors">EU ODEIO DRAGÕES</a></li>
+                <li><a href="#" class="hover:text-red-600 transition-colors text-red-600 font-bold">EU ODEIO DRAGÕES</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. Main Hero (Título clicável) -->
+    <main class="w-full flex-grow flex flex-col items-center justify-center p-8 md:p-20 text-center relative overflow-hidden">
+        
+        <!-- Título principal com efeito Glitch -->
+        <h2 id="clickableText" 
+            class="text-6xl sm:text-7xl md:text-9xl font-black uppercase glitch-text cursor-pointer select-none" 
+            data-text="EU ODEIO DRAGÕES">
+            EU ODEIO DRAGÕES
+        </h2>
+        
+        <p class="text-lg md:text-xl mt-4 text-gray-500 uppercase">
+            // (CAROLES) //
+        </p>
+    </main>
+
+    <!-- 3. Seção de "Notícias" (Estilo Breach: P&B) -->
+    <section class="w-full max-w-6xl mx-auto p-8 grid md:grid-cols-3 gap-4">
+        
+        <!-- Card 1 -->
+        <div class="border border-gray-700 p-4 bg-gray-900 news-card">
+            <h3 class="text-2xl font-bold uppercase text-red-600 mb-2">EU ODEIO DRAGÕES</h3>
+            <p class="text-sm">EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES.</p>
+            <a href="#" class="text-red-600 mt-2 inline-block hover:underline text-xs">EU ODEIO DRAGÕES &rarr;</a>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="border border-gray-700 p-4 bg-gray-900 news-card">
+            <h3 class="text-2xl font-bold uppercase text-red-600 mb-2">EU ODEIO DRAGÕES</h3>
+            <p class="text-sm">EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES.</p>
+            <a href="#" class="text-red-600 mt-2 inline-block hover:underline text-xs">EU ODEIO DRAGÕES &rarr;</a>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="border border-gray-700 p-4 bg-gray-900 news-card">
+            <h3 class="text-2xl font-bold uppercase text-red-600 mb-2">EU ODEIO DRAGÕES</h3>
+            <p class="text-sm">EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES. EU ODEIO DRAGÕES.</p>
+            <a href="#" class="text-red-600 mt-2 inline-block hover:underline text-xs">EU ODEIO DRAGÕES &rarr;</a>
+        </div>
+    </section>
+
+    <!-- 4. Call to Action (Botão "Compre Agora") -->
+    <section class="w-full text-center p-16 bg-gray-900 mt-8">
+        <button class="text-2xl md:text-3xl font-bold uppercase bg-transparent border-4 border-red-600 text-red-600 px-12 py-4 transition-all duration-200 hover:bg-red-600 hover:text-black hover:tracking-widest select-none">
+            EU ODEIO DRAGÕES
+        </button>
+    </section>
+
+    <!-- 5. Footer (Links sociais / legais) -->
+    <footer class="w-full p-6 text-center border-t border-gray-800 text-xs text-gray-600">
+        <div class="flex justify-center space-x-4 mb-2">
+            <a href="#" class="hover:text-red-600">EU ODEIO DRAGÕES</a>
+            <a href="#" class="hover:text-red-600">EU ODEIO DRAGÕES</a>
+            <a href="#" class="hover:text-red-600">EU ODEIO DRAGÕES</a>
+        </div>
+        <p>EU ODEIO DRAGÕES. &copy; 2025. EU ODEIO DRAGÕES.</p>
+    </footer>
+
+    <!-- Elemento de áudio escondido -->
+    <audio id="themeSound" src="sound.mp3" preload="auto"></audio>
+
+    <script>
+        // Pega os elementos do HTML
+        const textElement = document.getElementById('clickableText');
+        const audio = document.getElementById('themeSound');
+
+        // Adiciona o evento de clique ao texto
+        textElement.addEventListener('click', () => {
+            // Toca a música
+            if (audio.paused) {
+                audio.play()
+                    .catch(error => {
+                        console.error("Erro ao tocar o áudio:", error);
+                    });
+            } else {
+                // Pausa e reinicia a música se clicar de novo
+                audio.pause();
+                audio.currentTime = 0; 
+            }
+        });
+    </script>
+
 </body>
 </html>
